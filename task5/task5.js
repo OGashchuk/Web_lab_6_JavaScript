@@ -1,16 +1,32 @@
 function mergeObjects(obj1) {
-	//Change this function
-	var x={};
-	for (var i = 0; i < arguments.length; i++) {
-		for (var key in arguments[i]){
-			if (arguments[i].key==arguments[i+1].key){
-				x.key.push(arguments[i].key);
+	var res = {};
+	var all_key = []; // массив для сбора всех уникальных ключей 
+	var value_for_key = []; // массив для сбора значений для каждого ключа из all_key[]
+	var flag = 0; // кол-во одинаковых ключей
+	
+	for (var i = 0; i < obj1.length; i++) {      // цикл заполняет масссив ключей
+		for (var key in obj1[i]) {
+			for (var j = 0; j < all_key.length; j++) {
+				if (all_key[j] == key){
+					flag++;
+				}
 			}
+			if (flag < 1){
+				all_key.push(key);	
+			}
+			flag = 0;	
 		}
 	}
-	return x;
-
-
+	for (var i = 0; i < all_key.length; i++) {   // цикл заполненяет масссив значений для каждого ключа
+		for (var j = 0; j < obj1.length; j++) {
+			if(obj1[j][all_key[i]] != undefined){
+				value_for_key.push(obj1[j][all_key[i]]);
+			}
+		}
+		res[all_key[i]] = value_for_key;
+		value_for_key = [];
+	}
+	return res;
 }
 
 function assertEqualObjects(expectedVal, actualVal, message) {
