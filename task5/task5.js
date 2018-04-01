@@ -1,5 +1,5 @@
 function mergeObjects(obj1) {
-	var res = {};
+    var res = {};
 	var all_key = []; // массив для сбора всех уникальных ключей 
 	var value_for_key = []; // массив для сбора значений для каждого ключа из all_key[]
 	var flag = 0; // кол-во одинаковых ключей
