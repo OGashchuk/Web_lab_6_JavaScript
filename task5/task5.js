@@ -1,14 +1,14 @@
 function mergeObjects(obj1) {
-	for (var i = 0; i < all_key.length; i++) {   // цикл заполненяет масссив значений для каждого ключа
-		for (var j = 0; j < obj1.length; j++) {
-			if(obj1[j][all_key[i]] != undefined){
-				value_for_key.push(obj1[j][all_key[i]]);
+	var res={};
+    for (i = 0; i < obj1.length; i++) {
+        for (key in obj1[i]){
+            if (res[key]==undefined){
+            	res[key]=[];
 			}
-		}
-		res[all_key[i]] = value_for_key;
-		value_for_key = [];
-	}
-	return res;
+            res[key].push(obj1[i][key]);   
+        }
+    }
+    return res;
 }
 
 function assertEqualObjects(expectedVal, actualVal, message) {
